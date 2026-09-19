@@ -17,6 +17,11 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: ''
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: RecentsBlocker-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
